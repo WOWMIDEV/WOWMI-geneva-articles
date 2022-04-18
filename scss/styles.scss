@@ -511,6 +511,15 @@ select {
     height: 30px;
     background: #E9ECEA;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   &__socials {
