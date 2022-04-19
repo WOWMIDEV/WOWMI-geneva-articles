@@ -4,6 +4,7 @@
 $md: 991px;
 $sm: 771px;
 $xs: 574px;
+$mobile: 385px;
 
 
 *,
@@ -73,6 +74,15 @@ select {
   position: relative;
   padding: 140px 0;
 
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  }
+
   @media screen and (max-width:$sm) {
     padding: 100px 0;
   }
@@ -107,26 +117,28 @@ select {
     }
 
     @media screen and (max-width: $sm) {
-      font-size: 40px;
+      font-size: 30px;
+      line-height: 120%;
+      max-width: 350px;
     }
   }
 
   &__descr {
+    font-family: 'Karla', sans-serif;
     font-weight: 500;
     font-size: 22px;
     line-height: 140%;
     text-align: center;
     color: #FFFFFF;
-    max-width: 347px;
+    max-width: 530px;
     margin-bottom: 30px;
 
+
     @media screen and (max-width: $md) {
-      font-size: 18px;
+      font-size: 20px;
+      max-width: 330px;
     }
 
-    @media screen and (max-width: $sm) {
-      font-size: 16px;
-    }
   }
 
   &__btn.btn {
@@ -180,16 +192,40 @@ select {
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 32px;
   padding-left: 17px;
+
+  @media screen and (max-width:$xs) {
+    margin-bottom: 20px;
+  }
 }
 
 .tags {
   background-color: #E9ECEA;
-  padding: 60px 0px;
+  padding: 60px 0;
+
+  @media screen and (max-width:$xs) {
+    padding: 30px 0;
+  }
+
+  & .container {
+    padding-right: 0;
+  }
 
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
+
+    @media screen and (max-width: $sm) {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      -ms-overflow-style: none;
+      overflow: -moz-scrollbars-none;
+
+      &::-webkit-scrollbar {
+        height: 0;
+      }
+    }
+
   }
 
   &__tag {
@@ -203,6 +239,12 @@ select {
     display: block;
     white-space: nowrap;
     transition: all 0.3s ease 0s;
+
+    &--hidden {
+      @media screen and (max-width: $mobile) {
+        display: none;
+      }
+    }
 
     @media screen and (max-width:$md) {
       font-size: 20px;
@@ -225,6 +267,8 @@ select {
       color: #FFFFFF;
       background: #A22C32;
     }
+
+
   }
 }
 
@@ -261,16 +305,19 @@ select {
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: $xs) {
-    flex-direction: column;
-  }
+  @media screen and (max-width: $xs) {}
 
   &__img {
     max-width: 279px;
-    max-height: 180px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    @media screen and (max-width: $xs) {
+      max-width: 50%;
+    }
   }
 
   &__content {
@@ -278,7 +325,11 @@ select {
     padding: 30px 65px 30px 30px;
 
     @media screen and (max-width: $xs) {
-      padding: 30px;
+      padding: 20px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      padding: 10px;
     }
   }
 
@@ -291,6 +342,15 @@ select {
     margin-bottom: 32px;
     max-width: 170px;
     width: 100%;
+
+
+    @media screen and (max-width: $xs) {
+      margin-bottom: 15px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 10px;
+    }
   }
 
   &__btn {}
@@ -329,7 +389,7 @@ select {
     overflow: hidden;
 
     @media screen and (max-width:$sm) {
-      height: 455px;
+      height: 255px;
     }
 
 
@@ -352,12 +412,22 @@ select {
       & .articles__img {
         transform: scale(1.1);
       }
+
+      & .articles__btn {
+        background-color: #FCCB47;
+      }
     }
   }
 
   &__info {
     position: relative;
     z-index: 2;
+
+    @media screen and (max-width:$sm) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__tag {
@@ -399,9 +469,10 @@ select {
     margin-bottom: 15px;
 
     @media screen and (max-width: $sm) {
-      font-size: 20px;
-      line-height: 22px;
-      margin-bottom: 10px;
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 0;
+      max-width: 170px;
     }
   }
 
@@ -414,6 +485,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease 0s;
 
     @media screen and (max-width: $sm) {
       width: 40px;
@@ -725,11 +797,13 @@ select {
       }
 
       & .article-sidebar__img-wrp {
-        border-radius: 8px;
+        border: 1px solid #A22C32;
       }
 
       & .article-sidebar__title {
         text-decoration: underline;
+        color: #A22C32;
+
       }
     }
   }
@@ -749,6 +823,7 @@ select {
       overflow: hidden;
       flex: 0 0 auto;
       border-radius: 8px;
+      transition: all 0.4s ease 0s;
     }
   }
 
